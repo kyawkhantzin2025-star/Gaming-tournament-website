@@ -1,0 +1,1058 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NEON ARENA | Gaming Tournament</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#050510;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* Animated Background */
+body::before{
+    content:"";
+    position:fixed;
+    width:600px;
+    height:600px;
+    background:#7c00ff;
+    filter:blur(180px);
+    opacity:.18;
+    top:-200px;
+    left:-200px;
+    z-index:-2;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    width:500px;
+    height:500px;
+    background:#00eaff;
+    filter:blur(180px);
+    opacity:.12;
+    right:-150px;
+    bottom:-100px;
+    z-index:-2;
+}
+
+/* Navbar */
+
+nav{
+    position:fixed;
+    top:0;
+    width:100%;
+    height:75px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 7%;
+    background:rgba(5,5,16,.75);
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid rgba(255,255,255,.08);
+    z-index:1000;
+}
+
+.logo{
+    font-family:'Orbitron';
+    font-size:24px;
+    font-weight:900;
+    color:#00f7ff;
+    text-shadow:0 0 15px #00f7ff;
+}
+
+.logo span{
+    color:#ff00e6;
+}
+
+.nav-links{
+    display:flex;
+    gap:25px;
+    list-style:none;
+}
+
+.nav-links a{
+    color:#ddd;
+    text-decoration:none;
+    font-size:14px;
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:#00f7ff;
+    text-shadow:0 0 10px #00f7ff;
+}
+
+.nav-buttons{
+    display:flex;
+    gap:10px;
+}
+
+.btn{
+    border:none;
+    padding:11px 20px;
+    border-radius:8px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.3s;
+    text-decoration:none;
+    display:inline-block;
+}
+
+.btn-login{
+    background:transparent;
+    color:#fff;
+    border:1px solid #00eaff;
+}
+
+.btn-register{
+    background:linear-gradient(90deg,#00eaff,#7b00ff,#ff00cc);
+    color:white;
+    box-shadow:0 0 15px #7b00ff;
+}
+
+.btn:hover{
+    transform:translateY(-3px) scale(1.03);
+}
+
+/* Hero */
+
+.hero{
+    min-height:100vh;
+    padding:150px 8% 80px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:50px;
+}
+
+.hero-content{
+    max-width:650px;
+}
+
+.badge{
+    display:inline-block;
+    padding:8px 16px;
+    border:1px solid #ff00d4;
+    color:#ff55e8;
+    border-radius:30px;
+    margin-bottom:20px;
+    box-shadow:0 0 15px #ff00d433;
+    font-size:13px;
+}
+
+.hero h1{
+    font-family:'Orbitron';
+    font-size:clamp(45px,7vw,85px);
+    line-height:1.05;
+    margin-bottom:25px;
+}
+
+.gradient-text{
+    background:linear-gradient(90deg,#00eaff,#7c00ff,#ff00d4,#ffea00);
+    background-size:300%;
+    -webkit-background-clip:text;
+    color:transparent;
+    animation:gradient 5s infinite;
+}
+
+@keyframes gradient{
+    0%{background-position:0%}
+    50%{background-position:100%}
+    100%{background-position:0%}
+}
+
+.hero p{
+    color:#aaa;
+    line-height:1.8;
+    margin-bottom:30px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.main-btn{
+    background:linear-gradient(90deg,#00eaff,#7c00ff);
+    color:white;
+    box-shadow:0 0 25px #4d00ff88;
+}
+
+.outline-btn{
+    border:1px solid #ff00cc;
+    color:white;
+    background:#ff00cc12;
+}
+
+.hero-card{
+    width:430px;
+    height:500px;
+    border-radius:25px;
+    padding:3px;
+    background:linear-gradient(135deg,#00eaff,#7c00ff,#ff00cc,#ffe600);
+    box-shadow:0 0 60px #6200ff55;
+    animation:float 4s ease-in-out infinite;
+}
+
+.hero-card-inner{
+    width:100%;
+    height:100%;
+    border-radius:22px;
+    background:#0b0b18;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+.hero-icon{
+    font-size:120px;
+    filter:drop-shadow(0 0 20px #00eaff);
+}
+
+.hero-card h2{
+    font-family:'Orbitron';
+    margin:20px 0 10px;
+}
+
+.hero-card p{
+    color:#888;
+}
+
+@keyframes float{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-15px)}
+}
+
+/* Sections */
+
+section{
+    padding:90px 8%;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.section-title h2{
+    font-family:'Orbitron';
+    font-size:35px;
+}
+
+.section-title p{
+    color:#888;
+    margin-top:10px;
+}
+
+/* Stats */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.stat{
+    padding:30px;
+    background:#0d0d1b;
+    border:1px solid #ffffff12;
+    border-radius:15px;
+    text-align:center;
+    transition:.3s;
+}
+
+.stat:hover{
+    transform:translateY(-8px);
+    border-color:#00eaff;
+    box-shadow:0 0 25px #00eaff22;
+}
+
+.stat h2{
+    font-size:35px;
+    color:#00eaff;
+    font-family:'Orbitron';
+}
+
+.stat p{
+    color:#888;
+}
+
+/* Games */
+
+.games{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.game{
+    height:220px;
+    position:relative;
+    overflow:hidden;
+    border-radius:18px;
+    background:linear-gradient(145deg,#111124,#080812);
+    border:1px solid #ffffff12;
+    transition:.4s;
+}
+
+.game:hover{
+    transform:translateY(-10px);
+    border-color:#ff00dd;
+    box-shadow:0 0 30px #ff00dd33;
+}
+
+.game-icon{
+    font-size:75px;
+    text-align:center;
+    padding-top:30px;
+}
+
+.game h3{
+    text-align:center;
+    font-family:'Orbitron';
+}
+
+.game button{
+    display:block;
+    margin:12px auto;
+    background:#ffffff0d;
+    color:white;
+    border:1px solid #00eaff;
+    padding:7px 18px;
+    border-radius:20px;
+    cursor:pointer;
+}
+
+/* Tournament */
+
+.tournaments{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.tournament{
+    background:#0c0c19;
+    border:1px solid #ffffff12;
+    border-radius:18px;
+    padding:25px;
+    transition:.3s;
+}
+
+.tournament:hover{
+    transform:translateY(-8px);
+    box-shadow:0 0 30px #7c00ff33;
+}
+
+.tournament-top{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:20px;
+}
+
+.tag{
+    padding:5px 10px;
+    border-radius:15px;
+    background:#00eaff15;
+    color:#00eaff;
+    font-size:11px;
+}
+
+.prize{
+    color:#ffe600;
+}
+
+.tournament h3{
+    font-family:'Orbitron';
+    margin-bottom:15px;
+}
+
+.tournament-info{
+    color:#888;
+    line-height:2;
+    font-size:14px;
+}
+
+.tournament button{
+    width:100%;
+    margin-top:20px;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    background:linear-gradient(90deg,#ff00cc,#7c00ff);
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* Leaderboard */
+
+.table-box{
+    overflow-x:auto;
+    background:#0b0b17;
+    border-radius:18px;
+    border:1px solid #ffffff10;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,td{
+    padding:18px;
+    text-align:left;
+    border-bottom:1px solid #ffffff09;
+}
+
+th{
+    color:#00eaff;
+    font-family:'Orbitron';
+    font-size:13px;
+}
+
+td{
+    color:#ccc;
+}
+
+.rank{
+    color:#ffe600;
+    font-family:'Orbitron';
+}
+
+/* Countdown */
+
+.countdown{
+    margin-top:30px;
+    display:flex;
+    gap:12px;
+}
+
+.time-box{
+    background:#080815;
+    border:1px solid #7c00ff;
+    border-radius:10px;
+    padding:15px;
+    min-width:75px;
+    text-align:center;
+}
+
+.time-box strong{
+    display:block;
+    font-size:25px;
+    color:#00eaff;
+    font-family:'Orbitron';
+}
+
+.time-box span{
+    color:#777;
+    font-size:10px;
+}
+
+/* Join */
+
+.join{
+    background:
+    linear-gradient(135deg,#14001d,#00151c);
+    border:1px solid #ff00dd44;
+    border-radius:25px;
+    text-align:center;
+    padding:70px 20px;
+    box-shadow:0 0 50px #7c00ff18;
+}
+
+.join h2{
+    font-family:'Orbitron';
+    font-size:40px;
+    margin-bottom:15px;
+}
+
+.join p{
+    color:#999;
+    margin-bottom:25px;
+}
+
+/* Footer */
+
+footer{
+    padding:50px 8%;
+    border-top:1px solid #ffffff10;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+footer p{
+    color:#666;
+}
+
+.social{
+    display:flex;
+    gap:10px;
+}
+
+.social a{
+    width:40px;
+    height:40px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    background:#ffffff08;
+    color:white;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.social a:hover{
+    background:#7c00ff;
+    box-shadow:0 0 15px #7c00ff;
+}
+
+/* Mobile */
+
+@media(max-width:1000px){
+    .hero{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .hero-buttons{
+        justify-content:center;
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .games{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .tournaments{
+        grid-template-columns:1fr;
+    }
+
+    .hero-card{
+        width:90%;
+        max-width:430px;
+    }
+}
+
+@media(max-width:700px){
+
+    nav{
+        padding:0 4%;
+    }
+
+    .nav-links{
+        display:none;
+    }
+
+    .logo{
+        font-size:18px;
+    }
+
+    section{
+        padding:70px 5%;
+    }
+
+    .stats,
+    .games{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:45px;
+    }
+
+    .join h2{
+        font-size:28px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+
+<div class="logo">
+NEON<span>ARENA</span>
+</div>
+
+<ul class="nav-links">
+<li><a href="#home">Home</a></li>
+<li><a href="#games">Games</a></li>
+<li><a href="#tournaments">Tournaments</a></li>
+<li><a href="#leaderboard">Leaderboard</a></li>
+<li><a href="#about">About</a></li>
+</ul>
+
+<div class="nav-buttons">
+<a href="#" class="btn btn-login" onclick="login()">Login</a>
+<a href="#join" class="btn btn-register">Register</a>
+</div>
+
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+<div class="hero-content">
+
+<div class="badge">⚡ SEASON 2026 IS LIVE</div>
+
+<h1>
+ENTER THE
+<span class="gradient-text">ARENA</span>
+</h1>
+
+<p>
+Compete with gamers around the world.
+Join epic tournaments, build your team,
+climb the leaderboard and become the next
+gaming champion.
+</p>
+
+<div class="hero-buttons">
+
+<a href="#tournaments" class="btn main-btn">
+🏆 Explore Tournaments
+</a>
+
+<a href="#games" class="btn outline-btn">
+🎮 Browse Games
+</a>
+
+</div>
+
+</div>
+
+
+<div class="hero-card">
+
+<div class="hero-card-inner">
+
+<div class="hero-icon">🎮</div>
+
+<h2>NEON ARENA</h2>
+
+<p>Ultimate Gaming Tournament</p>
+
+<div class="countdown">
+
+<div class="time-box">
+<strong id="days">12</strong>
+<span>DAYS</span>
+</div>
+
+<div class="time-box">
+<strong id="hours">08</strong>
+<span>HOURS</span>
+</div>
+
+<div class="time-box">
+<strong id="minutes">35</strong>
+<span>MIN</span>
+</div>
+
+<div class="time-box">
+<strong id="seconds">44</strong>
+<span>SEC</span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- STATS -->
+
+<section>
+
+<div class="stats">
+
+<div class="stat">
+<h2>25K+</h2>
+<p>Players</p>
+</div>
+
+<div class="stat">
+<h2>350+</h2>
+<p>Tournaments</p>
+</div>
+
+<div class="stat">
+<h2>$2M+</h2>
+<p>Prize Pool</p>
+</div>
+
+<div class="stat">
+<h2>80+</h2>
+<p>Countries</p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- GAMES -->
+
+<section id="games">
+
+<div class="section-title">
+<h2>🎮 POPULAR GAMES</h2>
+<p>Choose your battlefield</p>
+</div>
+
+<div class="games">
+
+<div class="game">
+<div class="game-icon">🔫</div>
+<h3>VALORANT</h3>
+<button onclick="joinGame('Valorant')">View Tournaments</button>
+</div>
+
+<div class="game">
+<div class="game-icon">⚔️</div>
+<h3>FREE FIRE</h3>
+<button onclick="joinGame('Free Fire')">View Tournaments</button>
+</div>
+
+<div class="game">
+<div class="game-icon">🪖</div>
+<h3>PUBG MOBILE</h3>
+<button onclick="joinGame('PUBG Mobile')">View Tournaments</button>
+</div>
+
+<div class="game">
+<div class="game-icon">🚗</div>
+<h3>ROCKET LEAGUE</h3>
+<button onclick="joinGame('Rocket League')">View Tournaments</button>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- TOURNAMENTS -->
+
+<section id="tournaments">
+
+<div class="section-title">
+<h2>🏆 LIVE TOURNAMENTS</h2>
+<p>Join a tournament and prove yourself</p>
+</div>
+
+<div class="tournaments">
+
+<div class="tournament">
+
+<div class="tournament-top">
+<span class="tag">LIVE</span>
+<span class="prize">$50,000</span>
+</div>
+
+<h3>NEON VALORANT CUP</h3>
+
+<div class="tournament-info">
+🎮 Game: Valorant<br>
+👥 Teams: 128<br>
+💰 Prize: $50,000<br>
+📅 Date: October 10
+</div>
+
+<button onclick="registerTournament('Neon Valorant Cup')">
+JOIN TOURNAMENT
+</button>
+
+</div>
+
+
+<div class="tournament">
+
+<div class="tournament-top">
+<span class="tag">OPEN</span>
+<span class="prize">$25,000</span>
+</div>
+
+<h3>PUBG CHAMPIONSHIP</h3>
+
+<div class="tournament-info">
+🎮 Game: PUBG Mobile<br>
+👥 Teams: 64<br>
+💰 Prize: $25,000<br>
+📅 Date: October 18
+</div>
+
+<button onclick="registerTournament('PUBG Championship')">
+JOIN TOURNAMENT
+</button>
+
+</div>
+
+
+<div class="tournament">
+
+<div class="tournament-top">
+<span class="tag">SOON</span>
+<span class="prize">$10,000</span>
+</div>
+
+<h3>FREE FIRE CLASH</h3>
+
+<div class="tournament-info">
+🎮 Game: Free Fire<br>
+👥 Teams: 100<br>
+💰 Prize: $10,000<br>
+📅 Date: November 2
+</div>
+
+<button onclick="registerTournament('Free Fire Clash')">
+JOIN TOURNAMENT
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- LEADERBOARD -->
+
+<section id="leaderboard">
+
+<div class="section-title">
+<h2>👑 LEADERBOARD</h2>
+<p>Top players this season</p>
+</div>
+
+<div class="table-box">
+
+<table>
+
+<thead>
+<tr>
+<th>RANK</th>
+<th>PLAYER</th>
+<th>TEAM</th>
+<th>POINTS</th>
+<th>WIN RATE</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td class="rank">#01</td>
+<td>ShadowX</td>
+<td>Night Wolves</td>
+<td>9,850</td>
+<td>92%</td>
+</tr>
+
+<tr>
+<td class="rank">#02</td>
+<td>Venom</td>
+<td>Dark Force</td>
+<td>9,420</td>
+<td>89%</td>
+</tr>
+
+<tr>
+<td class="rank">#03</td>
+<td>Nova</td>
+<td>Cyber Kings</td>
+<td>9,110</td>
+<td>87%</td>
+</tr>
+
+<tr>
+<td class="rank">#04</td>
+<td>Phantom</td>
+<td>Red Dragons</td>
+<td>8,760</td>
+<td>84%</td>
+</tr>
+
+<tr>
+<td class="rank">#05</td>
+<td>Blaze</td>
+<td>Fire Squad</td>
+<td>8,430</td>
+<td>82%</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+
+<!-- JOIN -->
+
+<section id="join">
+
+<div class="join">
+
+<h2>READY TO ENTER THE ARENA?</h2>
+
+<p>
+Create your account and start competing today.
+</p>
+
+<button class="btn main-btn" onclick="register()">
+🚀 CREATE FREE ACCOUNT
+</button>
+
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer id="about">
+
+<p>© 2026 NEON ARENA. All Rights Reserved.</p>
+
+<div class="social">
+<a href="#">f</a>
+<a href="#">𝕏</a>
+<a href="#">▶</a>
+<a href="#">◎</a>
+</div>
+
+</footer>
+
+
+<script>
+
+/* Login */
+
+function login(){
+
+alert("🔐 Login system coming soon!");
+
+}
+
+
+/* Register */
+
+function register(){
+
+alert("🚀 Registration page coming soon!");
+
+}
+
+
+/* Tournament */
+
+function registerTournament(name){
+
+alert(
+"🏆 " + name +
+" selected!\n\nRegistration system will open soon."
+);
+
+}
+
+
+/* Game */
+
+function joinGame(game){
+
+alert(
+"🎮 " + game +
+" tournaments selected!"
+);
+
+}
+
+
+/* Countdown */
+
+let endTime = new Date();
+
+endTime.setDate(endTime.getDate() + 12);
+
+function updateCountdown(){
+
+let now = new Date().getTime();
+let distance = endTime.getTime() - now;
+
+let days = Math.floor(distance / (1000*60*60*24));
+let hours = Math.floor(
+(distance % (1000*60*60*24)) /
+(1000*60*60)
+);
+
+let minutes = Math.floor(
+(distance % (1000*60*60)) /
+(1000*60)
+);
+
+let seconds = Math.floor(
+(distance % (1000*60)) /
+1000
+);
+
+document.getElementById("days").innerText =
+String(days).padStart(2,"0");
+
+document.getElementById("hours").innerText =
+String(hours).padStart(2,"0");
+
+document.getElementById("minutes").innerText =
+String(minutes).padStart(2,"0");
+
+document.getElementById("seconds").innerText =
+String(seconds).padStart(2,"0");
+
+}
+
+setInterval(updateCountdown,1000);
+
+updateCountdown();
+
+</script>
+
+</body>
+</html>
+```
